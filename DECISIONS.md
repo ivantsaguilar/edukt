@@ -18,8 +18,8 @@ Identifica al menos una limitación, supuesto cuestionable u oportunidad de mejo
 reglas o la experiencia de aprendizaje propuestas.
 
 - Se podria pedir el nombre del alumno al iniciar la app web 
-- Agregar mensajes de refuerzo en que tiene intentos infinitos para avanzar al siguiente tema
-- Un sistema simple de gamificacion para un contador de puntos
+- Agregar mensajes de refuerzo en que tiene intentos infinitos para avanzar al siguiente tema y no se salga de la app
+- Un sistema simple de gamificacion para un contador de puntos y mantenerlo aprendiendo
 
 Explica brevemente:
 - Por qué consideras que es relevante.
@@ -38,10 +38,13 @@ Nos interesa conocer:
     - Evaluacion del flujo que pide el documento de producto
     - Evaluacion de modelos para base de datos
     - .gitignore de la app
+    - Creacion del seeder de temas, teoria, etc
+    - Creacion del codigo base para hacer funcionar el api del flujo del estudiante
 - Qué decisiones tomaste personalmente.
     - Version de node mas segura
-    - Creacion de base de datos
-    - Separacion de frontend y backend para mantenibilidad y escalado
+    - Diseno de base de datos
+    - Separacion de frontend y backend para mantenibilidad y escalabilidad
+    - Boton para reiniciar el temario
 - Cómo revisaste o validaste las soluciones obtenidas.
     - Probadolas
 - Si identificaste alguna propuesta de la IA que decidiste corregir, modificar o descartar, y por qué.
@@ -52,4 +55,9 @@ Explica brevemente:
 - Qué consideras que está bien resuelto.
 - Qué limitaciones o riesgos reconoces.
 - Qué mejorarías si dispusieras de más tiempo.
+    - login
+    - gamificacion
+    - explicaciones con ejemplos paso a paso de como resolver problemas (con un LLM o un video)
+    - agregar mas teoria de acuerdo al numero de reintentos fallidos para profundizar en la raiz de su aprendizaje
+    - tendencias de temas mas faciles/dificiles
 - Cuánto tiempo dedicaste aproximadamente al ejercicio.

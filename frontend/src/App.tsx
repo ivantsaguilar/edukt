@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { fetchProgress, submitAnswer, advanceTheory } from './services/api';
+import { fetchProgress, submitAnswer, advanceTheory, restartTopics } from './services/api';
 
 interface Option {
   key: string;
@@ -78,6 +78,17 @@ export default function App() {
     }
   };
 
+  const handleReset = async () => {
+    try {
+      setError(null);
+      setFeedback(null);
+      await restartTopics();
+      await loadData();
+    } catch (err: any) {
+      setError(err.message);
+    }
+  };
+
   if (!data) return <div className="p-8 text-center text-gray-600">Cargando edukt.com...</div>;
 
   if (data.progress.status === 'COMPLETADO') {
@@ -85,6 +96,12 @@ export default function App() {
       <div className="max-w-2xl mx-auto mt-12 p-8 bg-green-50 border border-green-300 rounded-lg shadow text-center">
         <h1 className="text-3xl font-bold text-green-800">¡Temario Completado! 🎉</h1>
         <p className="mt-4 text-green-700">Has respondido correctamente todas las actividades de la ruta de matemáticas.</p>
+        <button
+          onClick={handleReset}
+          className="mt-4 px-6 py-2.5 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 disabled:opacity-50 transition"
+          >
+              Reiniciar temario
+        </button>
       </div>
     );
   }

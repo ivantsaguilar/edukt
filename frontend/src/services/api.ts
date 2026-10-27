@@ -32,3 +32,14 @@ export async function advanceTheory() {
   }
   return data;
 }
+
+export async function restartTopics() {
+  const response = await fetch(`${API_BASE_URL}/restart-topics`, {
+    method: 'POST',
+  });
+  const data = await response.json();
+  if (!response.ok) {
+    throw new Error(data.error || 'Error al reinciar el temario');
+  }
+  return data;
+}
