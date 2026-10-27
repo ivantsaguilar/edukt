@@ -1,9 +1,10 @@
-export type Step = 'MAIN' | 'THEORY' | 'REINFORCEMENT' | 'COMPLETED';
+export type Step = 'ACTIVIDAD_PRINCIPAL' | 'TEORIA' | 'REFUERZO' | 'COMPLETADO';
+export type Status = 'EN_PROGRESO' | 'COMPLETADO';
 
 export interface ProgressState {
   currentTopicId: number;
   currentStep: Step;
-  status: 'IN_PROGRESS' | 'COMPLETED';
+  status: Status;
 }
 
 export interface TransitionInput {
@@ -16,31 +17,31 @@ export function computeNextState(input: TransitionInput): ProgressState {
   const { currentState, isCorrect, totalTopics } = input;
   const { currentTopicId, currentStep } = currentState;
 
-  if (currentState.status === 'COMPLETED') {
+  if (currentState.status === 'COMPLETADO') {
     throw new Error('El temario ya ha sido completado.');
   }
 
-  // Regla 1 & 4: Respuesta correcta en Principal o Refuerzo
-  if ((currentStep === 'MAIN' || currentStep === 'REINFORCEMENT') && isCorrect) {
+  // Reglas 1 y 4: Respuesta correcta en Principal o Refuerzo -> Siguiente tema o finalizar
+  if ((currentStep === 'ACTIVIDAD_PRINCIPAL' || currentStep === 'REFUERZO') && isCorrect) {
     if (currentTopicId >= totalTopics) {
-      return { currentTopicId, currentStep: 'COMPLETED', status: 'COMPLETED' };
+      return { currentTopicId, currentStep: 'COMPLETADO', status: 'COMPLETADO' };
     }
-    return { currentTopicId: currentTopicId + 1, currentStep: 'MAIN', status: 'IN_PROGRESS' };
+    return { currentTopicId: currentTopicId + 1, currentStep: 'ACTIVIDAD_PRINCIPAL', status: 'EN_PROGRESO' };
   }
 
   // Regla 2: Incorrecto en Actividad Principal -> Ir a Teoría
-  if (currentStep === 'MAIN' && !isCorrect) {
-    return { currentTopicId, currentStep: 'THEORY', status: 'IN_PROGRESS' };
+  if (currentStep === 'ACTIVIDAD_PRINCIPAL' && !isCorrect) {
+    return { currentTopicId, currentStep: 'TEORIA', status: 'EN_PROGRESO' };
   }
 
   // Regla 3: Avance manual desde Teoría -> Ir a Refuerzo
-  if (currentStep === 'THEORY') {
-    return { currentTopicId, currentStep: 'REINFORCEMENT', status: 'IN_PROGRESS' };
+  if (currentStep === 'TEORIA') {
+    return { currentTopicId, currentStep: 'REFUERZO', status: 'EN_PROGRESO' };
   }
 
-  // Regla 5 & 6: Incorrecto en Refuerzo -> Regresar a Teoría
-  if (currentStep === 'REINFORCEMENT' && !isCorrect) {
-    return { currentTopicId, currentStep: 'THEORY', status: 'IN_PROGRESS' };
+  // Reglas 5 y 6: Incorrecto en Refuerzo -> Regresar a Teoría
+  if (currentStep === 'REFUERZO' && !isCorrect) {
+    return { currentTopicId, currentStep: 'TEORIA', status: 'EN_PROGRESO' };
   }
 
   return currentState;
