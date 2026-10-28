@@ -1,46 +1,80 @@
-Configuración y ejecución
+# edukt — Ruta Adaptativa de Aprendizaje de Matemáticas
 
-Este archivo debe contener únicamente la información necesaria para instalar, ejecutar y
-revisar técnicamente el proyecto.
-Incluye:
-- Requisitos e instrucciones de instalación y ejecución.
-- Instrucciones para utilizar Docker Compose, si corresponde.
-- Configuración de variables de entorno, incluyendo .env.example cuando sea necesario.
-- Inicialización de datos.
-- Comandos para ejecutar las pruebas.
-- Información técnica indispensable para poner en funcionamiento la aplicación.
+Aplicación web Full Stack que permite a los estudiantes recorrer un temario de matemáticas con actividades evaluables, refuerzos y consulta de teória según su desempeño.
 
-Arquitectura
+---
 
-edukt/
-├── docker-compose.yml
-├── backend/
-│   ├── Dockerfile
-│   ├── package.json
-│   ├── tsconfig.json
-│   ├── src/
-│   │   ├── config/          # Conexión a PostgreSQL
-│   │   ├── db/              # Migraciones y Seeder[cite: 6]
-│   │   ├── models/          # Interfaces y entidades de DB
-│   │   ├── services/        # Máquina de estados y lógica de negocio
-│   │   ├── controllers/     # Controladores HTTP[cite: 3]
-│   │   ├── routes/          # Rutas API express
-│   │   └── app.ts           # Punto de entrada de la API
-│   └── tests/               # Pruebas integradas con Jest/Supertest[cite: 6]
-└── frontend/
-    ├── Dockerfile
-    ├── package.json
-    ├── vite.config.ts
-    ├── tailwind.config.js
-    └── src/
-        ├── components/      # Router, QuestionCard, TheoryCard, ProgressBar
-        ├── services/        # Cliente API (fetch/axios)
-        └── App.tsx
+## 🛠️ Stack Tecnológico
 
-## Instalacion
+- **Backend:** Node.js, Express, TypeScript, PostgreSQL, Jest, Supertest.
+- **Frontend:** React, Vite, Tailwind CSS v4, TypeScript.
+- **Infraestructura:** Docker, Docker Compose.
 
-# Desplegar aplicación completa
-docker compose up --build -d
+---
 
-# Ejecutar pruebas automatizadas en el contenedor de backend
+## 🚀 Requisitos e Instalación Rápida
+
+Asegúrate de tener instalados **Docker** y **Docker Compose**.
+
+### 1. Desplegar la aplicación completa
+
+Ejecuta el siguiente comando en la raíz del repositorio:
+
+```bash
+docker compose up --build
+```
+
+### Este comando automatiza el arranque de todo el sistema:
+
+- Levanta la base de datos PostgreSQL (edukt_db) en el puerto 5432.
+
+- Espera el estado healthy del contenedor de base de datos.
+
+- Ejecuta de forma automática el seeder **(npm run db:seed)** cargando los 3 temas, actividades y teoría provistos
+
+- Inicia el servidor Backend en http://localhost:4000.
+
+- Inicia el servidor Frontend en http://localhost:5173.
+
+
+**Nota** para reiniciar datos: Para detener los contenedores y reiniciar la base de datos a su estado inicial, ejecuta:
+
+```
+docker compose down -v
+```
+
+
+## Ejecución de Pruebas Automatizadas
+
+Las pruebas evalúan el cumplimiento de las reglas del motor de decisión y la API:
+
+1. Respuesta correcta en Actividad Principal avanza al siguiente tema.
+2. Respuesta incorrecta en Actividad Principal transiciona a TEORÍA'. 
+3. Rechazar opción de respuesta inexistente (ejemplo: "z").
+4. Bloqueo de envíos tras completar todo el temario.
+5. Rechazar intento de responder una actividad fuera del paso actual.
+
+Ejecucion con Docker (**Recomendada**)
+```bash
 docker compose exec backend npm test
+```
+
+
+### Ejecucion forma local
+
+Asegúrate de tener la base de datos corriendo en Docker (docker compose up -d db) y ejecuta desde la carpeta raiz del proyecto:
+
+```bash
+cd backend
+npm test
+```
+
+
+## Variables de Entorno
+
+Las variables vienen preconfiguradas en docker-compose.yml para desarrollo local:
+
+```
+PORT=4000
+DATABASE_URL=postgres://edukt_user:edukt_password@db:5432/edukt_db
+```
