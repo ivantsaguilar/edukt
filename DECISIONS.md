@@ -71,7 +71,13 @@ Explica brevemente:
     - Por experiencia de usuario
     - Por retencion
 - Qué alternativa o mejora propondrías.
+    - Un frontend sin distracciones
+    - Temarios dinamicos y mas profundos en la teoria de los refuerzos y mas ejecicios en refuerzos
+    - Agregar videos de donde se implmentan esa teoria
 - Cómo validarías su conveniencia antes de implementarla.
+    - Preguntando a usuarios
+    - Lanzando pruebas A/B
+    - Usando estadistica para metodos de aprendizaje
 
 3. Uso de inteligencia artificial
 Explica cómo utilizaste herramientas de IA durante el desarrollo.
@@ -102,15 +108,22 @@ Nos interesa conocer:
 - Si identificaste alguna propuesta de la IA que decidiste corregir, modificar o descartar, y por qué.
     - propuestas sin sentido o exageradas para lo que se pide
     - Codigo generado que no correspondia al contexto que se necesita
+    - Mapeo de los temas ny contenido incorrecto
 
 4. Autoevaluación
 Explica brevemente:
 - Qué consideras que está bien resuelto.
+    - El flujo del estudiante
+    - La visualizacion del estatus al avanzar
 - Qué limitaciones o riesgos reconoces.
+    - Delegarle mucho trabajo a la AI 
+    - No revisar que hace ni como lo hace
+    - Una limitante en el aprendizaje son las evaluaciones sin sentido, es decir, debe ser mas que contetar bien, nos tenemos que asegurar que el estudiante aprenda y quiera continuar haciendolo sin salir del sistema
 - Qué mejorarías si dispusieras de más tiempo.
     - login
     - gamificacion
     - explicaciones con ejemplos paso a paso de como resolver problemas (con un LLM o un video)
     - agregar mas teoria de acuerdo al numero de reintentos fallidos para profundizar en la raiz de su aprendizaje
     - tendencias de temas mas faciles/dificiles
-- Cuánto tiempo dedicaste aproximadamente al ejercicio.
+- Cuánto tiempo dedicaste aproximadamente al ejercicio
+    - Aproximadamente 7 horas
