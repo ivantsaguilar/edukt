@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { fetchProgress, submitAnswer, advanceTheory, restartTopics } from './services/api';
 
 interface Option {
@@ -93,7 +93,7 @@ export default function App() {
 
   if (data.progress.status === 'COMPLETADO') {
     return (
-      <div className="max-w-2xl mx-auto mt-12 p-8 bg-green-50 border border-green-300 rounded-lg shadow text-center">
+      <div className="max-w-2xl p-8 mx-auto mt-12 text-center border border-green-300 rounded-lg shadow bg-green-50">
         <h1 className="text-3xl font-bold text-green-800">¡Temario Completado! 🎉</h1>
         <p className="mt-4 text-green-700">Has respondido correctamente todas las actividades de la ruta de matemáticas.</p>
         <button
@@ -109,14 +109,14 @@ export default function App() {
   const { topic, currentContent, progress, history } = data;
 
   return (
-    <div className="max-w-3xl mx-auto my-10 p-6 bg-white border rounded-xl shadow-sm">
+    <div className="max-w-3xl p-6 mx-auto my-10 bg-white border shadow-sm rounded-xl">
       {/* Encabezado y Ruta de Aprendizaje */}
-      <header className="border-b pb-4 mb-6">
-        <div className="flex justify-between items-center mb-2">
-          <span className="text-sm font-bold text-blue-600 tracking-wide uppercase">
+      <header className="pb-4 mb-6 border-b">
+        <div className="flex items-center justify-between mb-2">
+          <span className="text-sm font-bold tracking-wide text-blue-600 uppercase">
             Tema {topic?.id}: {topic?.title}
           </span>
-          <span className="text-xs bg-gray-100 text-gray-700 px-3 py-1 rounded-full font-medium">
+          <span className="px-3 py-1 text-xs font-medium text-gray-700 bg-gray-100 rounded-full">
             Paso: {progress.currentStep}
           </span>
         </div>
@@ -125,19 +125,19 @@ export default function App() {
 
       {/* Mensajes de Error o Retroalimentación */}
       {error && (
-        <div className="mb-4 p-3 bg-red-50 border border-red-200 text-red-700 text-sm rounded-lg">
+        <div className="p-3 mb-4 text-sm text-red-700 border border-red-200 rounded-lg bg-red-50">
           {error}
         </div>
       )}
       {feedback && (
-        <div className="mb-4 p-3 bg-blue-50 border border-blue-200 text-blue-800 text-sm rounded-lg">
+        <div className="p-3 mb-4 text-sm text-blue-800 border border-blue-200 rounded-lg bg-blue-50">
           {feedback}
         </div>
       )}
 
       {/* Contenido Dinámico */}
       <main className="space-y-6">
-        <div className="text-gray-800 text-lg leading-relaxed bg-gray-50 p-4 rounded-lg border">
+        <div className="p-4 text-lg leading-relaxed text-gray-800 border rounded-lg bg-gray-50">
           {currentContent?.body}
         </div>
 
@@ -186,14 +186,14 @@ export default function App() {
       </main>
 
       {/* Historial de Intentos */}
-      <footer className="mt-10 border-t pt-6">
-        <h3 className="font-semibold text-gray-700 mb-3 text-sm">Historial de Intentos</h3>
+      <footer className="pt-6 mt-10 border-t">
+        <h3 className="mb-3 text-sm font-semibold text-gray-700">Historial de Intentos</h3>
         {history.length === 0 ? (
           <p className="text-xs text-gray-400">Aún no has realizado intentos.</p>
         ) : (
-          <ul className="space-y-2 max-h-40 overflow-y-auto">
+          <ul className="space-y-2 overflow-y-auto max-h-40">
             {history.map((item) => (
-              <li key={item.id} className="flex justify-between items-center text-xs p-2 bg-gray-50 rounded border">
+              <li key={item.id} className="flex items-center justify-between p-2 text-xs border rounded bg-gray-50">
                 <span className="text-gray-600">
                   Actividad: <strong>{item.content_id}</strong> | Opción: {item.selected_option}
                 </span>

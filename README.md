@@ -34,7 +34,7 @@ docker compose up --build
 
 - Inicia el servidor Backend en http://localhost:4000.
 
-- Inicia el servidor Frontend en http://localhost:5173.
+- Inicia el servidor Frontend en http://localhost:3000.
 
 
 **Nota** para reiniciar datos: Para detener los contenedores y reiniciar la base de datos a su estado inicial, ejecuta:

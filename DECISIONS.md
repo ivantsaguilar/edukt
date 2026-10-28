@@ -1,9 +1,63 @@
 Decisiones, criterio y reflexión
 
 1. Decisiones técnicas
-    - Uso de docker para el proyecto
-    - Separacion de frontend y backend
-    -  
+    - Uso de docker como fuente de verdad.
+    - Separacion de frontend y backend por escalabilidad.
+    - Uso de una version de node sin tantas vulnerabilidades.
+    - Diseño de base de datos.
+    - Orquestación y automatización del entorno para usar con docker.
+
+    Uso de docker como fuente de verdad.
+        - Qué problema necesitabas resolver.
+            - Que se pudiera reproducir facilmente
+        - Qué alternativas consideraste, si las hubo.
+            - No las hubo
+        - Por qué elegiste la solución implementada.
+            - Facil de reproducir
+        - Qué ventajas, limitaciones o compromisos identificas.
+            - Mayor tiempo de configuracion
+
+    - Separacion de frontend y backend por escalabilidad.
+        - Qué problema necesitabas resolver.
+            - Que el sistema fuera mantenible y escalable
+        - Qué alternativas consideraste, si las hubo.
+            - Hacer un monolito
+        - Por qué elegiste la solución implementada.
+            - Por escalabilidad y mantenibilidad
+        - Qué ventajas, limitaciones o compromisos identificas.
+            - La ventaja es que puede crecer el backend si fuera necesario y dejar el frontend en un solo servidor pequeno
+
+    - Uso de una version de node sin tantas vulnerabilidades.
+        - Qué problema necesitabas resolver.
+            - Seguridad: Elegir una version sin tantas vulnerabilidades de nodejs
+        - Qué alternativas consideraste, si las hubo.
+            - Usar la version 22
+        - Por qué elegiste la solución implementada.
+            - Poruqe tenia menos vulverabilidades
+        - Qué ventajas, limitaciones o compromisos identificas.
+            - Tiene menos vulnerabilidades lo que significa menos puntos de entrada para atacantes
+
+    - Diseño de base de datos.
+        - Qué problema necesitabas resolver.
+            - Entender como iban a persistir los datos
+        - Qué alternativas consideraste, si las hubo.
+            - Pedirle a la AI que lo hiciera
+        - Por qué elegiste la solución implementada.
+            - Para tener control de como funcionaria el sistema
+        - Qué ventajas, limitaciones o compromisos identificas.
+            - Tuve errores en hacer sobre ingenieria para un problema que no lo necesitaba
+
+    - Orquestación y automatización del entorno para usar con docker.
+        - Qué problema necesitabas resolver.
+            - Que el evaluador no tuviera probemas al probar el proyecto
+        - Qué alternativas consideraste, si las hubo.
+            - No considere otra
+        - Por qué elegiste la solución implementada.
+            - Para que funcione en cualqueir maquina
+        - Qué ventajas, limitaciones o compromisos identificas.
+            - Cuaqluiera que baje el repositorio no tendra problemas de probar la app
+
+
 Para cada una, explica:
 - Qué problema necesitabas resolver.
     - Seguridad: Elegir una version sin tantas vulnerabilidades de nodejs
@@ -45,10 +99,16 @@ Nos interesa conocer:
     - Diseno de base de datos
     - Separacion de frontend y backend para mantenibilidad y escalabilidad
     - Boton para reiniciar el temario
+    - no usar un .env para no complicar su reproduccion al evaluar
+    - Pedirle a la Ai que escribiera el flujo de aplicacion
+    - Pedirle las pruebas automatizadas validando los casos requeridos
 - Cómo revisaste o validaste las soluciones obtenidas.
     - Probadolas
+    - Validando reglas de la hoja de ruta
+    - Verificando el flujo de la aplicacion mediante pruebas en el navegador
 - Si identificaste alguna propuesta de la IA que decidiste corregir, modificar o descartar, y por qué.
     - propuestas sin sentido o exageradas para lo que se pide
+    - Codigo generado que no correspondia al contexto que se necesita
 
 4. Autoevaluación
 Explica brevemente:

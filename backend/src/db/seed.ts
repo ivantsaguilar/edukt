@@ -55,21 +55,74 @@ export async function runSeeder() {
   // Insertar Contenidos
   await pool.query(`
     INSERT INTO contents (id, topic_id, type, title, body, options, correct_option) VALUES
-    -- Tema 1
-    ('A1', 1, 'ACTIVIDAD_PRINCIPAL', 'Actividad principal A1', 'Resuelve $x+4=9$.', '[{"key":"a","text":"3"},{"key":"b","text":"5"},{"key":"c","text":"13"}]', 'b'),
-    ('T1', 1, 'TEORIA', 'Contenido teórico T1: Despeje de incógnitas', 'Para resolver una ecuación, debemos encontrar el valor de la incógnita que hace verdadera la igualdad. Podemos realizar operaciones equivalentes en ambos lados. Ejemplo: $x+4=9 \\implies x=5$.', NULL, NULL),
-    ('R1', 1, 'REFUERZO', 'Actividad de refuerzo R1', 'Resuelve $3x=12$.', '[{"key":"a","text":"4"},{"key":"b","text":"9"},{"key":"c","text":"36"}]', 'a'),
 
-    -- Tema 2
-    ('A2', 2, 'ACTIVIDAD_PRINCIPAL', 'Actividad principal A2', 'Resuelve $2x+3=11$.', '[{"key":"a","text":"7"},{"key":"b","text":"4"},{"key":"c","text":"5"}]', 'b'),
-    ('T2', 2, 'TEORIA', 'Contenido teórico T2: Ecuaciones lineales de varios pasos', 'Primero podemos eliminar los términos que se suman o restan y después despejar el coeficiente. Ejemplo: $2x+3=11 \\implies 2x=8 \\implies x=4$.', NULL, NULL),
-    ('R2', 2, 'REFUERZO', 'Actividad de refuerzo R2', 'Resuelve $5x-7=8$.', '[{"key":"a","text":"1"},{"key":"b","text":"3"},{"key":"c","text":"5"}]', 'b'),
+    -- TEMA 1
+    ('A1', 1, 'ACTIVIDAD_PRINCIPAL', 'Actividad principal A1', 'Resuelve x + 4 = 9.', 
+    '[{"key":"a","text":"3"},{"key":"b","text":"5"},{"key":"c","text":"13"}]', 'b'),
 
-    -- Tema 3
-    ('A3', 3, 'ACTIVIDAD_PRINCIPAL', 'Actividad principal A3', 'Resuelve $x^2-5x+6=0$.', '[{"key":"a","text":"x=2, x=3"},{"key":"b","text":"x=1, x=6"},{"key":"c","text":"x=-2, x=-3"}]', 'a'),
-    ('T3', 3, 'TEORIA', 'Contenido teórico T3: Resolución de ecuaciones cuadráticas', 'Algunas ecuaciones cuadráticas pueden resolverse mediante factorización: $(x-2)(x-3)=0 \\implies x=2 \\text{ o } x=3$.', NULL, NULL),
-    ('R3', 3, 'REFUERZO', 'Actividad de refuerzo R3', 'Resuelve $x^2-9=0$.', '[{"key":"a","text":"x=3 únicamente"},{"key":"b","text":"x=-3, x=3"},{"key":"c","text":"x=-9, x=9"}]', 'b')
-    ON CONFLICT (id) DO NOTHING;
+    ('T1', 1, 'TEORIA', 'Contenido teórico T1: Despeje de incógnitas', 
+    'Para resolver una ecuación, debemos encontrar el valor de la incógnita que hace verdadera la igualdad.
+
+    Podemos realizar operaciones equivalentes en ambos lados de la ecuación para aislar la incógnita.
+
+    Por ejemplo:
+    x + 4 = 9
+
+    Restamos 4 en ambos lados:
+    x = 9 - 4
+
+    Por lo tanto:
+    x = 5', 
+      NULL, NULL),
+
+      ('R1', 1, 'REFUERZO', 'Actividad de refuerzo R1', 'Resuelve 3x = 12.', 
+      '[{"key":"a","text":"4"},{"key":"b","text":"9"},{"key":"c","text":"36"}]', 'a'),
+
+      -- TEMA 2
+      ('A2', 2, 'ACTIVIDAD_PRINCIPAL', 'Actividad principal A2', 'Resuelve 2x + 3 = 11.', 
+      '[{"key":"a","text":"7"},{"key":"b","text":"4"},{"key":"c","text":"5"}]', 'b'),
+
+      ('T2', 2, 'TEORIA', 'Contenido teórico T2: Ecuaciones lineales de varios pasos', 
+      'Una ecuación lineal puede requerir más de una operación para encontrar el valor de la incógnita.
+
+    Primero podemos eliminar los términos que se suman o restan y después despejar el coeficiente de la incógnita.
+
+    Por ejemplo:
+    2x + 3 = 11
+
+    Restamos 3 en ambos lados:
+    2x = 8
+
+    Dividimos entre 2:
+    x = 4', 
+      NULL, NULL),
+
+      ('R2', 2, 'REFUERZO', 'Actividad de refuerzo R2', 'Resuelve 5x - 7 = 8.', 
+      '[{"key":"a","text":"1"},{"key":"b","text":"3"},{"key":"c","text":"5"}]', 'b'),
+
+      -- TEMA 3
+      ('A3', 3, 'ACTIVIDAD_PRINCIPAL', 'Actividad principal A3', 'Resuelve x² - 5x + 6 = 0.', 
+      '[{"key":"a","text":"x = 2, x = 3"},{"key":"b","text":"x = 1, x = 6"},{"key":"c","text":"x = -2, x = -3"}]', 'a'),
+
+      ('T3', 3, 'TEORIA', 'Contenido teórico T3: Resolución de ecuaciones cuadráticas', 
+      'Una ecuación cuadrática contiene una incógnita elevada al cuadrado.
+
+    Algunas ecuaciones cuadráticas pueden resolverse mediante factorización, expresándolas como el producto de dos factores.
+
+    Por ejemplo:
+    x² - 5x + 6 = 0
+
+    Factorizamos:
+    (x - 2)(x - 3) = 0
+
+    Para que el producto sea cero, al menos uno de los factores debe ser cero.
+
+    Por lo tanto:
+    x = 2 o x = 3', 
+      NULL, NULL),
+
+    ('R3', 3, 'REFUERZO', 'Actividad de refuerzo R3', 'Resuelve x² - 9 = 0.', 
+    '[{"key":"a","text":"x = 3 únicamente"},{"key":"b","text":"x = -3, x = 3"},{"key":"c","text":"x = -9, x = 9"}]', 'b')
   `);
 
   // Inicializar Estado
