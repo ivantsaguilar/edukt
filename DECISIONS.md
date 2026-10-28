@@ -57,16 +57,6 @@ Decisiones, criterio y reflexión
         - Qué ventajas, limitaciones o compromisos identificas.
             - Cuaqluiera que baje el repositorio no tendra problemas de probar la app
 
-
-Para cada una, explica:
-- Qué problema necesitabas resolver.
-    - Seguridad: Elegir una version sin tantas vulnerabilidades de nodejs
-    - Flujo del estudiante para avanza y ser evaluado
-- Qué alternativas consideraste, si las hubo.
-- Por qué elegiste la solución implementada.
-- Qué ventajas, limitaciones o compromisos identificas.
-
-
 2. Reflexión de producto
 Identifica al menos una limitación, supuesto cuestionable u oportunidad de mejora en las
 reglas o la experiencia de aprendizaje propuestas.
@@ -77,6 +67,9 @@ reglas o la experiencia de aprendizaje propuestas.
 
 Explica brevemente:
 - Por qué consideras que es relevante.
+    - Por usabilidad
+    - Por experiencia de usuario
+    - Por retencion
 - Qué alternativa o mejora propondrías.
 - Cómo validarías su conveniencia antes de implementarla.
 
