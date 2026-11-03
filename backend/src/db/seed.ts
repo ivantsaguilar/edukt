@@ -85,20 +85,20 @@ export async function runSeeder() {
       ('T2', 2, 'TEORIA', 'Contenido teórico T2: Ecuaciones lineales de varios pasos', 
       'Una ecuación lineal puede requerir más de una operación para encontrar el valor de la incógnita.
 
-    Primero podemos eliminar los términos que se suman o restan y después despejar el coeficiente de la incógnita.
+      Primero podemos eliminar los términos que se suman o restan y después despejar el coeficiente de la incógnita.
 
-    Por ejemplo:
-    2x + 3 = 11
+      Por ejemplo:
+      2x + 3 = 11
 
-    Restamos 3 en ambos lados:
-    2x = 8
+      Restamos 3 en ambos lados:
+      2x = 8
 
-    Dividimos entre 2:
-    x = 4', 
+      Dividimos entre 2:
+      x = 4', 
       NULL, NULL),
 
-      ('R2', 2, 'REFUERZO', 'Actividad de refuerzo R2', 'Resuelve 5x - 7 = 8.', 
-      '[{"key":"a","text":"1"},{"key":"b","text":"3"},{"key":"c","text":"5"}]', 'b'),
+    ('R2', 2, 'REFUERZO', 'Actividad de refuerzo R2', 'Resuelve 5x - 7 = 8.', 
+    '[{"key":"a","text":"1"},{"key":"b","text":"3"},{"key":"c","text":"5"}]', 'b'),
 
       -- TEMA 3
       ('A3', 3, 'ACTIVIDAD_PRINCIPAL', 'Actividad principal A3', 'Resuelve x² - 5x + 6 = 0.', 
@@ -107,22 +107,23 @@ export async function runSeeder() {
       ('T3', 3, 'TEORIA', 'Contenido teórico T3: Resolución de ecuaciones cuadráticas', 
       'Una ecuación cuadrática contiene una incógnita elevada al cuadrado.
 
-    Algunas ecuaciones cuadráticas pueden resolverse mediante factorización, expresándolas como el producto de dos factores.
+      Algunas ecuaciones cuadráticas pueden resolverse mediante factorización, expresándolas como el producto de dos factores.
 
-    Por ejemplo:
-    x² - 5x + 6 = 0
+      Por ejemplo:
+      x² - 5x + 6 = 0
 
-    Factorizamos:
-    (x - 2)(x - 3) = 0
+      Factorizamos:
+      (x - 2)(x - 3) = 0
 
-    Para que el producto sea cero, al menos uno de los factores debe ser cero.
+      Para que el producto sea cero, al menos uno de los factores debe ser cero.
 
-    Por lo tanto:
-    x = 2 o x = 3', 
+      Por lo tanto:
+      x = 2 o x = 3', 
       NULL, NULL),
 
     ('R3', 3, 'REFUERZO', 'Actividad de refuerzo R3', 'Resuelve x² - 9 = 0.', 
     '[{"key":"a","text":"x = 3 únicamente"},{"key":"b","text":"x = -3, x = 3"},{"key":"c","text":"x = -9, x = 9"}]', 'b')
+    ON CONFLICT (id) DO NOTHING;
   `);
 
   // Inicializar Estado
