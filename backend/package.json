@@ -9,7 +9,7 @@
   "scripts": {
     "build": "tsc",
     "start": "npm run build && node dist/app.js",
-    "dev": "ts-node src/app.ts",
+    "dev": "node --watch -r ts-node/register src/app.ts",
     "db:seed": "ts-node src/db/seed.ts",
     "test": "jest --detectOpenHandles"
   },
