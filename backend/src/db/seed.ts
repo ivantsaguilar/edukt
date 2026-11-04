@@ -61,22 +61,25 @@ export async function runSeeder() {
     '[{"key":"a","text":"3"},{"key":"b","text":"5"},{"key":"c","text":"13"}]', 'b'),
 
     ('T1', 1, 'TEORIA', 'Contenido teórico T1: Despeje de incógnitas', 
-    'Para resolver una ecuación, debemos encontrar el valor de la incógnita que hace verdadera la igualdad.
+      'Para resolver una ecuación, debemos encontrar el valor de la incógnita que hace verdadera la igualdad.
 
-    Podemos realizar operaciones equivalentes en ambos lados de la ecuación para aislar la incógnita.
+      Podemos realizar operaciones equivalentes en ambos lados de la ecuación para aislar la incógnita.
 
-    Por ejemplo:
-    x + 4 = 9
+      Por ejemplo:
+      x + 4 = 9
 
-    Restamos 4 en ambos lados:
-    x = 9 - 4
+      Restamos 4 en ambos lados:
+      x = 9 - 4
 
-    Por lo tanto:
-    x = 5', 
+      Por lo tanto:
+      x = 5', 
       NULL, NULL),
 
       ('R1', 1, 'REFUERZO', 'Actividad de refuerzo R1', 'Resuelve 3x = 12.', 
       '[{"key":"a","text":"4"},{"key":"b","text":"9"},{"key":"c","text":"36"}]', 'a'),
+
+      ('R1_ALT', 1, 'REFUERZO_ALTERNATIVO', 'Actividad de refuerzo R1_ALT', 'Resuelve 4x = 12.', 
+      '[{"key":"a","text":"3"},{"key":"b","text":"9"},{"key":"c","text":"36"}]', 'a'),
 
       -- TEMA 2
       ('A2', 2, 'ACTIVIDAD_PRINCIPAL', 'Actividad principal A2', 'Resuelve 2x + 3 = 11.', 
@@ -100,7 +103,10 @@ export async function runSeeder() {
     ('R2', 2, 'REFUERZO', 'Actividad de refuerzo R2', 'Resuelve 5x - 7 = 8.', 
     '[{"key":"a","text":"1"},{"key":"b","text":"3"},{"key":"c","text":"5"}]', 'b'),
 
-      -- TEMA 3
+    ('R2_ALT', 2, 'REFUERZO_ALTERNATIVO', 'Actividad de refuerzo R2_ALT', 'Resuelve 3x - 7 = 2', 
+    '[{"key":"a","text":"1"},{"key":"b","text":"3"},{"key":"c","text":"5"}]', 'b'),
+
+    -- TEMA 3
       ('A3', 3, 'ACTIVIDAD_PRINCIPAL', 'Actividad principal A3', 'Resuelve x² - 5x + 6 = 0.', 
       '[{"key":"a","text":"x = 2, x = 3"},{"key":"b","text":"x = 1, x = 6"},{"key":"c","text":"x = -2, x = -3"}]', 'a'),
 
@@ -122,7 +128,11 @@ export async function runSeeder() {
       NULL, NULL),
 
     ('R3', 3, 'REFUERZO', 'Actividad de refuerzo R3', 'Resuelve x² - 9 = 0.', 
-    '[{"key":"a","text":"x = 3 únicamente"},{"key":"b","text":"x = -3, x = 3"},{"key":"c","text":"x = -9, x = 9"}]', 'b')
+    '[{"key":"a","text":"x = 3 únicamente"},{"key":"b","text":"x = -3, x = 3"},{"key":"c","text":"x = -9, x = 9"}]', 'b'),
+
+    ('R3_ALT', 3, 'REFUERZO_ALTERNATIVO', 'Actividad de refuerzo R3_ALT', 'Resuelve x² - 16 = 0.', 
+    '[{"key":"a","text":"x = 4 únicamente"},{"key":"b","text":"x = -4, x = 4"},{"key":"c","text":"x = -16, x = 16"}]', 'b')
+
     ON CONFLICT (id) DO NOTHING;
   `);
 

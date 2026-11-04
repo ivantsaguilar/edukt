@@ -91,6 +91,7 @@ export default function App() {
 
   if (!data) return <div className="p-8 text-center text-gray-600">Cargando edukt.com...</div>;
 
+  // Temario completado
   if (data.progress.status === 'COMPLETADO') {
     return (
       <div className="max-w-2xl p-8 mx-auto mt-12 text-center border border-green-300 rounded-lg shadow bg-green-50">

@@ -1,3 +1,5 @@
+### Opción A: 10 Desafíos de Live Coding (Modificaciones de Código)
+
 1. Segundo ejercicio de Refuerzo: Si el estudiante falla el ejercicio de refuerzo R1, en lugar de presentarle la misma pregunta, el sistema debe presentar un segundo refuerzo alternativo (R1\_ALT) tras volver a consultar la teoría.
 
 2. Límite de intentos y bloqueo: Si un estudiante acumula 3 intentos fallidos consecutivos en la fase de refuerzo de un mismo tema, la máquina de estados debe cambiar su status a 'BLOQUEADO'.
@@ -23,9 +25,9 @@
 ----
 
 
-Opción B: 10 Preguntas de Arquitectura y DECISIONS.md
+### Opción B: 10 Preguntas de Arquitectura y DECISIONS.md
 
-1. ¿Por qué decidiste separar la lógica de transiciones en una función pura (stateMachine.ts) en lugar de escribir la lógica dentro de consultas SQL o controladores de Express?
+1. **COMPLETADO** ¿Por qué decidiste separar la lógica de transiciones en una función pura (stateMachine.ts) en lugar de escribir la lógica dentro de consultas SQL o controladores de Express?
 
 2. Si la plataforma escala de 1 estudiante a 100,000 usuarios concurrentes, ¿qué partes de tu arquitectura colapsarían primero y cómo las rediseñarías?
 
@@ -50,7 +52,7 @@ Opción B: 10 Preguntas de Arquitectura y DECISIONS.md
 ----
 
 
-Opción C: 10 Preguntas de Fundamentos Tecnológicos
+### Opción C: 10 Preguntas de Fundamentos Tecnológicos
 
 1. TypeScript: ¿Cuál es la diferencia conceptual entre type e interface en TypeScript y por qué usamos interface para definir las estructuras de respuesta de la API?
 

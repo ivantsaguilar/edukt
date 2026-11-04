@@ -8,6 +8,7 @@ const connectionString =
 const pool = new Pool({ connectionString });
 
 export class LearningService {
+
   async getStudentProgress() {
     const progressRes = await pool.query('SELECT * FROM student_progress WHERE id = 1');
     const progress = progressRes.rows[0];
@@ -31,9 +32,10 @@ export class LearningService {
     }
 
     // Seleccionar contenido omitiendo correct_option por seguridad
+    const contentType = progress.current_step === 'TEORIA_REPASO' ? 'TEORIA' : progress.current_step; // Mapear TEORIA_REPASO -> TEORIA para obtener el texto explicativo de la DB
     const contentRes = await pool.query(
       'SELECT id, topic_id, type, title, body, options FROM contents WHERE topic_id = $1 AND type = $2',
-      [progress.current_topic_id, progress.current_step]
+      [progress.current_topic_id, contentType]
     );
 
     const topicRes = await pool.query('SELECT * FROM topics WHERE id = $1', [progress.current_topic_id]);
@@ -114,7 +116,7 @@ export class LearningService {
     const progressRes = await pool.query('SELECT * FROM student_progress WHERE id = 1');
     const progress = progressRes.rows[0];
 
-    if (progress.current_step !== 'TEORIA') {
+    if (progress.current_step !== 'TEORIA' && progress.current_step !== 'TEORIA_REPASO') {
       throw new Error('Solo se puede avanzar si te encuentras consultando contenido teórico.');
     }
 
