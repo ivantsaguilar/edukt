@@ -1,6 +1,6 @@
 ### Opción A: 10 Desafíos de Live Coding (Modificaciones de Código)
 
-1. Segundo ejercicio de Refuerzo: Si el estudiante falla el ejercicio de refuerzo R1, en lugar de presentarle la misma pregunta, el sistema debe presentar un segundo refuerzo alternativo (R1\_ALT) tras volver a consultar la teoría.
+1. **COMPLETADO** Segundo ejercicio de Refuerzo: Si el estudiante falla el ejercicio de refuerzo R1, en lugar de presentarle la misma pregunta, el sistema debe presentar un segundo refuerzo alternativo (R1\_ALT) tras volver a consultar la teoría.
 
 2. Límite de intentos y bloqueo: Si un estudiante acumula 3 intentos fallidos consecutivos en la fase de refuerzo de un mismo tema, la máquina de estados debe cambiar su status a 'BLOQUEADO'.
 
@@ -27,25 +27,35 @@
 
 ### Opción B: 10 Preguntas de Arquitectura y DECISIONS.md
 
-1. **COMPLETADO** ¿Por qué decidiste separar la lógica de transiciones en una función pura (stateMachine.ts) en lugar de escribir la lógica dentro de consultas SQL o controladores de Express?
+1. ¿Por qué decidiste separar la lógica de transiciones en una función pura (stateMachine.ts) en lugar de escribir la lógica dentro de consultas SQL o controladores de Express?
+**Porque la funcion de la maquina de estados solo debe de encargarse de decidir que paso sigue, no tendria porque depender de la base de datos o de que algun dato la pueda modificar, simplemente se espera el mismo resultado con la misma entrada**
 
 2. Si la plataforma escala de 1 estudiante a 100,000 usuarios concurrentes, ¿qué partes de tu arquitectura colapsarían primero y cómo las rediseñarías?
+**Lo primero que podria colapsar es la base de datos, asi que usaria redis, usando una capa para dar las consultas que otros ya han hecho y si no estan ahi ir a la base de datos a traerlas y ponerlas en redis, la otra es poner esas peticiones de escritura en una cola asincrona que desapache mientras la maquina de estados ni se inmuta ya que no depende de la base de datos**
 
 3. En DECISIONS.md afirmas que el frontend no tiene la verdad absoluta sobre las reglas. ¿Qué pasaría si un usuario modifica el estado local en React usando React DevTools o envía peticiones HTTP manipuladas con Postman?
+**No pasaria nada, la logica vive en el backend, la base de datos es el isumo que usa la maquina de estados para validar que paso sigue, siempre se busca la respuesta en base de datos y si no existe se le responde con un mensaje de retroalimentacion**
 
 4. ¿Por qué elegiste un Seeder en TypeScript con cláusulas ON CONFLICT DO NOTHING en lugar de usar una herramienta de migraciones y ORM como Prisma, TypeORM o Knex?
+**No iba a configurar un orm solo para unas cuantas consulta y 4 tablas en base de datos, creo que para esta solucion usar consultas puras soluciona el problema, ademas eso seria sobre ingenieria y el documento decia que no sobre ingenieria, elegi ahi no hacerlo ya que me tarde un poco configurando docker y configurar prisma me llevaria mas tiempo**
 
 5. ¿Qué ventajas y desventajas representa haber orquestado el proyecto con Docker Compose utilizando imágenes de Node Alpine frente a ejecutar los procesos nativamente en el sistema operativo?
+**La ventaja por la que lo elegi es porque es reproducible en cualquier maquina o servidor, aunque toma tiempo de configurar pero entrega confianza de que funcionara. Pero hacerlo asi agrega un ligero overhead de memoria/disco que como si fuera de forma nativa**
 
 6. ¿Cómo garantizas la idempotencia en los endpoints de escritura (POST /api/submit y POST /api/advance-theory)?
+**La maquina de estados garantiza que no te puedas mover ya que se controla con el estado actual, no podrias pasar de teoria a teoria aunque des 2click, ademas en base de datos se usaria un indice de restricion que rechace duplicados en base de datos**
 
 7. ¿Por qué la propiedad correct_option jamás se devuelve en la respuesta del endpoint GET /api/progress y qué riesgo de seguridad previene esta omisión?
+**Se omitio desde la consulta a base de datos porque al analizar la peticion se podrian ver las respuestas, previene manipular evaluaciones por diseno**
 
 8. Si tuvieras que agregar autenticación de usuarios mediante JSON Web Tokens (JWT), ¿cómo modificarías el esquema de PostgreSQL y el contrato de las rutas API?
+**Agregaria una tabla de usuarios junto a sus tokens, asi dejaria de usar el user_id y pasaria a usarlo pasandolo por el middleware de auth**
 
 9. En la máquina de estados utilizaste tipos literales de TypeScript ('ACTIVIDAD_PRINCIPAL' | 'TEORIA' | 'REFUERZO'). ¿Por qué elegiste esta estructura en lugar de un patrón de diseño State orientada a objetos o una librería como XState?
+**Lo elegi asi porque para una regla con 4 estados no seberian meterse clases innecesarias ni librerias subutlizadas que ademas suman peso y complejidad, ademas de tener 0 dependencias**
 
 10. Si el contenedor del backend se apaga repentinamente a mitad de la ejecución de POST /api/submit, ¿cómo aseguras que la base de datos no quede en un estado inconsistente (ejemplo: intento registrado pero estado no actualizado)?
+**Usaria transacciones de bases de datos**
 
 
 ----
